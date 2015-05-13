@@ -2,9 +2,9 @@ import java.util.List;
 
 public class RuleProcessor{
  
-    public static String SimpleRuleToSQL(List<SimpleRule> data, Properties properties){
+    public String SimpleRuleToSQL(List<SimpleRule> data, Properties properties){
      
-        String query = "SELECT * FROM " + properties.tableName;
+        String query = "SELECT * FROM " + properties.tableName + " WHERE ";
      
         for(int i =0; i < data.size(); i++){
        
