@@ -8,8 +8,17 @@ import java.util.List;
 public class Data {
 
 	int columnCount;
+	/*ANDREW DIDINCHUK
+	After careful consideration I think this calls for a new object 
+	public class Column{
+		String name;
+		String dataType;
+		String length;
+		String fieldType;
+	}
+	and use a ArrayList<Column>;
+	*/
 	List<String> columnHeaderList;
-
 	HashMap<String, String> typeOfColumns;
 
 	// each ArrayList inside the List is one row.
@@ -24,12 +33,16 @@ public class Data {
 		allRowsLists = new ArrayList<ArrayList<String>>();
 
 	}
-
+	
+	/*
+	Why do you need a column count when you have an data structure with columns??
+	*/
 	public int getColumnCount() {
 		System.out.println("getColumnCount inside data: column Count is "+columnCount);
+		//return columnHeaderList.size();
 		return columnCount;
 	}
-
+	
 	public void setColumnCount(int columnCount) {
 		this.columnCount = columnCount;
 	}
