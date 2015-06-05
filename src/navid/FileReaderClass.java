@@ -17,6 +17,9 @@ public class FileReaderClass {
 	
 	public FileReaderClass() {
 		data = new Data();
+		/*
+		 data should be initialized when a file is extracted, allowing for multiple extraction via the same instance.
+		*/
 	}
 
 	public boolean getHasHeader() {
@@ -65,7 +68,6 @@ public class FileReaderClass {
 
 	public Data make2DData3(String filePath) {
 		
-
 		data.setColumnCount(getNumberOfColumns(filePath));
 
 		String line = "";
@@ -84,6 +86,7 @@ public class FileReaderClass {
 
 				columns = line.split(delimiterString);
 				System.out.println("Numbe of columns is " + columns.length + ".");
+				//ANDREW DIDINCHUK - you are setting the column count again.
 				data.setColumnCount(columns.length);
 				for (int i = 0; i < columns.length; i++) {
 					System.out.println("column#" + i + " is "+columns[i]);
@@ -187,11 +190,12 @@ public class FileReaderClass {
 		try {
 
 			br = new BufferedReader(new FileReader(filePath));
-
+			//return br.readLine().split(delimiterString).length -- is all you need
 			line = br.readLine();
 
 			String[] columns = line.split(delimiterString);
 			System.out.println("Numbe of columns isssssssssss " + columns.length + ".");
+			//ANDREW DIDINCHUK - This line is not necessary
 			data.setColumnCount(columns.length);
 			
 
