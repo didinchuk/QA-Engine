@@ -13,6 +13,9 @@ public class Data {
 	HashMap<String, String> typeOfColumns;
 
 	// each ArrayList inside the List is one row.
+	/*
+	Maybe use an ArrayList<ArrayList<String>> for fastest key retrieval - ANDREW DIDINCHUK
+	*/
 	List<ArrayList<String>> allRowsLists;
 
 	public Data() {
