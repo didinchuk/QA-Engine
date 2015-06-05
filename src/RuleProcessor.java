@@ -10,7 +10,35 @@ public class RuleProcessor{
        
             if(i>0)
                 query += " AND ";
-            query += properties.column + data.get(i).operator + data.get(i).value;
+           
+            switch (data.get(i).type.toLowerCase()){
+            case "length":
+            	System.out.println("length");
+
+                query +=  "LENGTH(" + properties.column + ") " + data.get(i).operator + ' '+ data.get(i).value;
+            	break;
+
+            case "null":
+            	
+            	System.out.println("=");
+
+                query += properties.column +' '+ data.get(i).operator +' ' +  data.get(i).value ;
+            	break;
+            case "empty":
+                query += properties.column +' '+ data.get(i).operator + ' ' + "'" + data.get(i).value + "'";
+            	System.out.println("empty");
+            	break;
+            	
+            case "value":
+            	System.out.println("value");
+
+                query += properties.column +' '+ data.get(i).operator +' ' + "'" + data.get(i).value + "'";
+            	break;
+            default:
+            		System.out.println(data.get(i).type + " is not a valid data type!");
+            	
+            	
+            }
        
         }
      
@@ -22,10 +50,14 @@ public class RuleProcessor{
      
         String query = "SELECT ";
      
-        query += data.aggregate + "(" + properties.column + ")";
+        query += data.aggregate + "(" + properties.column + ")" ;
         query += " FROM " + properties.tableName;
-        if (data.target == null)
-            query += " GROUP BY(" + data.target + ")";
+        
+        
+//        query += data.aggregate + "(" + properties.column + ")";
+//        query += " FROM " + properties.tableName;
+//        if (data.target == null)
+//            query += " GROUP BY(" + data.target + ")";
      
         return query + ";";
      

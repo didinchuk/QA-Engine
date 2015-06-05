@@ -8,7 +8,6 @@ public class Properties {
 
 	public Properties (String xmlDefinition){
 		
-		
 	}
 	public Properties (){
 		

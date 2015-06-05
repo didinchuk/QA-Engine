@@ -1,0 +1,31 @@
+SimpleRules:
+
+
+property.column = email
+property.tableName = usersTable
+
+
+
+NULL check:
+
+SELECT * FROM testdb.userstable  WHERE email IS NULL;
+
+empty check:
+
+SELECT * FROM testdb.userstable  WHERE email = '';
+
+Value check:
+
+SELECT * FROM testdb.userstable  WHERE email = "navid@navidcs.com"
+
+LENGTH check:
+
+SELECT * FROM testdb.usersTable  WHERE LENGTH(email) > 7
+
+/////////////////////
+
+AggregateRules:
+
+AVG:
+
+SELECT AVG(idUsers), userFirstName FROM usersTable  GROUP BY userFirstName;
