@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_45"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=QA-Engine&amp;ivyXmlPath=ivy.xml&amp;confs=*&amp;acceptedTypes=jar%2Cbundle%2Cejb%2Cmaven-plugin&amp;alphaOrder=false&amp;resolveInWorkspace=true&amp;transitiveResolve=true&amp;readOSGiMetadata=false&amp;retrievedClasspath=false"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=QA-Engine&amp;ivyXmlPath=ivy.xml&amp;confs=*&amp;acceptedTypes=jar%2Cbundle%2Cejb%2Cmaven-plugin&amp;alphaOrder=false&amp;resolveInWorkspace=true&amp;transitiveResolve=true&amp;readOSGiMetadata=false&amp;retrievedClasspath=false&amp;sourceTypes=source&amp;javadocTypes=javadoc&amp;sourceSuffixes=-source%2C-sources%2C-src&amp;javadocSuffixes=-javadoc%2C-javadocs%2C-doc%2C-docs&amp;mapIfOnlyOneSource=false&amp;mapIfOnlyOneJavadoc=false"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_45/jars/db2java.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_45/jars/db2jcc4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
