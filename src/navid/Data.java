@@ -1,57 +1,60 @@
 package navid;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class Data {
 
-	int columnCount;
-	List<String> columnHeaderList;
-
-	HashMap<String, String> typeOfColumns;
+//	int columnCount;
+	Header header ;
+	//ArrayList<Column> columnObjectList;
+//	HashMap<String, String> typeOfColumns;
 
 	// each ArrayList inside the List is one row.
-	List<ArrayList<String>> allRowsLists;
+	/*
+	Maybe use an ArrayList<ArrayList<String>> for fastest key retrieval - ANDREW DIDINCHUK
+	*/
+	ArrayList<ArrayList<String>> allRowsLists;
 
 	public Data() {
-		typeOfColumns = new HashMap<String, String>();
-		columnHeaderList = new ArrayList<String>();
-		allRowsLists = new ArrayList<ArrayList<String>>();
-
+//		typeOfColumns = new HashMap<String, String>();
+		header = new Header();
+		
+//		allRowsLists = new ArrayList<ArrayList<String>>();
+		
 	}
+	
+	
+	
 
-	public int getColumnCount() {
-		System.out.println("getColumnCount inside data: column Count is "+columnCount);
-		return columnCount;
-	}
+//	public HashMap<String, String> getTypeOfColumns() {
+//		return typeOfColumns;
+//	}
+//
+//	public void setTypeOfColumns(HashMap<String, String> typeOfColumns) {
+//		this.typeOfColumns = typeOfColumns;
+//	}
 
-	public void setColumnCount(int columnCount) {
-		this.columnCount = columnCount;
-	}
-
-	public HashMap<String, String> getTypeOfColumns() {
-		return typeOfColumns;
-	}
-
-	public void setTypeOfColumns(HashMap<String, String> typeOfColumns) {
-		this.typeOfColumns = typeOfColumns;
-	}
-
-	public List<ArrayList<String>> getRowColumnLists() {
+	public ArrayList<ArrayList<String>> getRowColumnLists() {
 		return allRowsLists;
 	}
 
-	public List<String> getColumnHeaderList() {
-		return columnHeaderList;
+	public ArrayList<Column> getColumnHeaderList() {
+		return header.columns;
 	}
 
-	public void setColumnHeaderList(List<String> columnList) {
-		this.columnHeaderList = columnList;
+	public void setColumnHeaderListByUser(int numberOfColumns) {
+		Scanner in = new Scanner(System.in);
+		for (int i = 0; i < numberOfColumns; i++) {
+			System.out.println("Please enter the name of column#"+i);
+			header.columns.add(new Column(in.next()));
+			
+		}
 	}
 
-	public void setRowColumnLists(List<ArrayList<String>> rowColumnLists) {
+	public void setRowColumnLists(ArrayList<ArrayList<String>> rowColumnLists) {
 		this.allRowsLists = rowColumnLists;
 	}
 
@@ -64,12 +67,12 @@ public class Data {
 		}
 	}
 	
-	public void showTypes () {
-		System.out.println("Here are types that you typed which are saved in a hashMap:");
-		for (String s: typeOfColumns.keySet()){
-			System.out.println("key = " + s + " and value = "+ typeOfColumns.get(s));
-		}
-		
-	}
+//	public void showTypes () {
+//		System.out.println("Here are types that you typed which are saved in a hashMap:");
+//		for (String s: typeOfColumns.keySet()){
+//			System.out.println("key = " + s + " and value = "+ typeOfColumns.get(s));
+//		}
+//		
+//	}
 
 }

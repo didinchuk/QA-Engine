@@ -10,8 +10,9 @@ public class InputInterface {
 	FileReaderClass fr;
 	Data data;
 	boolean hasHeader;
-	List<String> columnsHeaderList;
+	ArrayList<String> columnsHeaderList;
 	String filePath;
+	int columnCount;
 
 	public InputInterface() {
 		columnsHeaderList = new ArrayList<String>();
@@ -48,11 +49,11 @@ public class InputInterface {
 		return filePath;
 	}
 
-	public void setHeaders(boolean h) {
+	public void setHasHeaders(boolean h) {
 		hasHeader = h;
 	}
 
-	public void setHeaderColumns(int columnCount) {
+	public void setHeaderColumnsByUser(int columnCount) {
 		Scanner in = new Scanner(System.in);
 		for (int i = 0; i < columnCount; i++) {
 			System.out.println("Please enter the column name for column#"+(i + 1));
@@ -67,18 +68,21 @@ public class InputInterface {
 		return hasHeader;
 	}
 
-	public void getDataTypes(List<String> columnList) {
+	public void getDataTypes(ArrayList<Column> columnList) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("number of columns is: "+ columnList.size());
 		List<String> tempColumnTypeList = new ArrayList<String>();
 		String tempString;
 		for (int i = 0; i < columnList.size(); i++) {
 			
-			System.out.println("Please enter the column type for column#"+(i + 1) + " whose name is: \""+ data.columnHeaderList.get(i)+"\"");
+			System.out.println("Please enter the column type for column#"+(i + 1) + " whose name is: \""+ data.header.columns.get(i)+"\"");
 			tempString = in.next();
 //			tempColumnTypeList.add(tempString);
-
-			data.typeOfColumns.put(data.columnHeaderList.get(i), tempString);
+			data.header.columns.get(i).dataType = tempString;
+			
+			
+			
+//			data.typeOfColumns.put(data.header.columns.get(i), tempString);
 //			tempColumnTypeList.add(in.nextLine());
 				
 		}
@@ -94,24 +98,29 @@ public class InputInterface {
 	public void run() {
 
 		getFilePath();
-		setHeaders(false);
+		setHasHeaders(false);
 		
 		fr.setDelimiter(",");
 		fr.setRowLimit(100);
 		fr.setIgnoreLines(0);
 		fr.setHasHeader(this.hasHeader);
+		columnCount = fr.getNumberOfColumns(filePath);
 
-		data = fr.make2DData3(this.filePath);
+		if (this.hasHeader) {
+			fr.setHeaderColumnsByFR(columnCount);
+		}
+		else{
+			setHeaderColumnsByUser(data.header.columns.size());
+			data.setColumnHeaderListByUser(columnCount);
+		}
+		
+
+		data = fr.make2DData5(this.filePath);
 		System.out.println();
 		System.out.println("Here are all the rows:");
 		data.showAllRows();
-
-		if (!this.hasHeader) {
-			setHeaderColumns(data.getColumnCount());
-			data.setColumnHeaderList(this.columnsHeaderList);
-		}
-		getDataTypes(data.getColumnHeaderList());
-		data.showTypes();
+		getDataTypes(data.header.columns);
+//		data.showTypes();
 		DB2 db2 = new DB2();
 //		db2.createTableString(data);
 		
