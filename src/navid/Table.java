@@ -18,7 +18,7 @@ public class Table {
 
 	List<String> insertQueryStrings;
 
-	public Table(String path,String s, String t) {
+	public Table(String path, String s, String t) {
 		pathString = path;
 		schemaNameString = s;
 		tableNameString = t;
@@ -152,7 +152,7 @@ public class Table {
 
 		char tempInputString = ' ';
 
-//		typeOfColumns = new ArrayList<String>();
+		// typeOfColumns = new ArrayList<String>();
 		BufferedReader br = null;
 
 		String line = "";

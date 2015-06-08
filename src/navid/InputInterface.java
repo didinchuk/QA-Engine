@@ -86,6 +86,10 @@ public class InputInterface {
 		
 		
 	}
+	
+	public void getDataTypes2(String filePathString ) {
+		
+	}
 
 	public void run() {
 
@@ -108,6 +112,12 @@ public class InputInterface {
 		}
 		getDataTypes(data.getColumnHeaderList());
 		data.showTypes();
+		DB2 db2 = new DB2();
+//		db2.createTableString(data);
+		
+		
+		
+		
 	}
 
 	public static void main(String[] args) {
