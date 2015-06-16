@@ -52,7 +52,7 @@ public class FileProcessor {
        }
 
 
-       public int getNumberOfColumns(String filePath) {
+       public int getNumberOfColumnFromHeader(String filePath) {
 
               String line = "";
 
@@ -65,7 +65,7 @@ public class FileProcessor {
                      line = br.readLine();
 
                      String[] columns = line.split(delimiterString);
-                     System.out.println("Numbe of columns isssssssssss "
+                     System.out.println("Numbe of columns is "
                                   + columns.length + ".");
 //                   data.setColumnCount(columns.length);
 
@@ -161,7 +161,7 @@ public class FileProcessor {
               
               Data d = new Data();
 
-//            data.setColumnCount(getNumberOfColumns(filePath));
+//            data.setColumnCount(getNumberOfColumnFromHeader(filePath));
 
               String line = "";
               String tempInputString = " ";

@@ -52,7 +52,7 @@ public class FileProcessor {
        }
 
 
-       public int getNumberOfColumns(String filePath) {
+       public int getNumberOfColumnFromHeader(String filePath) {
 
               String line = "";
 
@@ -193,7 +193,7 @@ public class FileProcessor {
 
        public Data make2DDataWithHeader(String filePath) {
 
-              getNumberOfColumns(filePath);
+              getNumberOfColumnFromHeader(filePath);
 
               String line = "";
 
@@ -312,7 +312,7 @@ public class FileProcessor {
 
        public Data make2DData3(String filePath) {
               data = new Data();
-              data.setColumnCount(getNumberOfColumns(filePath));
+              data.setColumnCount(getNumberOfColumnFromHeader(filePath));
 
               String line = "";
 
@@ -379,7 +379,7 @@ public class FileProcessor {
 
        public Data make2DData4(String filePath) {
 
-              data.setColumnCount(getNumberOfColumns(filePath));
+              data.setColumnCount(getNumberOfColumnFromHeader(filePath));
 
               String line = "";
               char tempInputString = ' ';
@@ -463,7 +463,7 @@ public class FileProcessor {
               
               Data d = new Data();
 
-//            data.setColumnCount(getNumberOfColumns(filePath));
+//            data.setColumnCount(getNumberOfColumnFromHeader(filePath));
 
               String line = "";
               String tempInputString = " ";
@@ -546,7 +546,7 @@ public class FileProcessor {
 
 //     public Data make2DData3(String filePath) {
 //            data = new Data();
-//            data.setColumnCount(getNumberOfColumns(filePath));
+//            data.setColumnCount(getNumberOfColumnFromHeader(filePath));
 //
 //            String line = "";
 //

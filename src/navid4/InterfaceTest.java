@@ -134,22 +134,15 @@ public class InterfaceTest {
 		getTableName();
 //		setDefaultTableName();
 		
-		data.showAllRows();
+//		data.showAllRows();
 		DB2 db2 = new DB2();
 
 		String createTableTempString = db2.createTableString(data);
 		db2.exectueCreateTable(createTableTempString);
 		db2.update_QA_TEMPTABLES(createTableTempString,data.tableNameString);
-		db2.makeInsertDataQuery(data);
-		
-//		ArrayList<String> insertList = db2.makeInsertDataQueryWithMaxBatchLimit(data);
-//
-//		System.out.println("insert queries:");
-//		for(String string : insertList){
-//			System.out.println(string);
-//		}
-//		System.out.println();
-		db2.exectueInsertData(db2.makeInsertDataQueryWithMaxBatchLimit(data));
+		db2.makeInsertDataQueryWithMaxBatchLimit(data);
+		db2.exectueInsertData();
+		db2.showInsertQueryArrayList();
 
 	}
 
@@ -158,29 +151,7 @@ public class InterfaceTest {
 		System.out.println("Please insert the table name:");
 		data.tableNameString = in.next().toUpperCase();
 	}
-
-	public void getTableName2() {
-
-		Scanner in2 = new Scanner(System.in);
-
-		String string = in2.next();
-		System.out.println("your input is " + string);
-		// in2.close();
-
-	}
-
-	public void getTypesFromUser2() {
-		int count = 1;
-		Scanner in = new Scanner(System.in);
-		for (Column c : data.header.columns) {
-			System.out.println("Please enter the type for column #" + count
-					+ " whose name is \"" + c.name + "\"");
-			// String tempTyepString =
-			c.dataType = in.next();
-		}
-
-	}
-
+	
 	public void getTypesFromUser() {
 		int i = 0;
 

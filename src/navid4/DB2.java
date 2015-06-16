@@ -21,7 +21,25 @@ import dataLoader.tempInputInterface;
 public class DB2 {
 
 	// max value that is acceptable
-	int maxBatchInsert = 1970;
+	int maxBatchInsert = 136;
+	ArrayList<String> insertQueriesAttributeArrayList;
+
+	public DB2() {
+		 insertQueriesAttributeArrayList = new ArrayList<String>();
+	}
+
+	public void showInsertQueryArrayList() {
+		System.out.println();
+		if (insertQueriesAttributeArrayList.size() == 0) {
+			System.out.println("insertQueriesAttributeArrayList is empty. :( ");
+		} else {
+			System.out.println("Here are the list of insert queries:");
+			for (String string : insertQueriesAttributeArrayList)
+				System.out.println(string);
+
+		}
+
+	}
 
 	// what if one of the data has ',' in it?
 	public String createTableString(Data d) {
@@ -98,7 +116,8 @@ public class DB2 {
 
 	// write the code so that all (portion) of data is added with
 	// as few statements as possible considering the buffer limit
-	public void exectueInsertData(ArrayList<String> insertQueriesList) {
+
+	public void exectueInsertData() {
 
 		Connection connection = null;
 		Statement selectStmt = null;
@@ -110,7 +129,7 @@ public class DB2 {
 
 			selectStmt = connection.createStatement();
 
-			for (String eachRowInsertQuery : insertQueriesList) {
+			for (String eachRowInsertQuery : insertQueriesAttributeArrayList) {
 
 				int result = selectStmt.executeUpdate(eachRowInsertQuery);
 			}
@@ -127,12 +146,12 @@ public class DB2 {
 		}
 
 	}
-	
+
 	public void getMaxBatchInsert() {
 		System.out.println("Please type the maximum batch for insert:");
 		Scanner in = new Scanner(System.in);
 		maxBatchInsert = in.nextInt();
-		
+
 	}
 
 	public ArrayList<String> makeInsertDataQueryWithMaxBatchLimit(Data d) {
@@ -162,9 +181,14 @@ public class DB2 {
 		// what if there is not enough space even till here?! :P
 		if (incrementalStringBuilder.length() > maxBatchInsert) {
 			System.out
-					.println("There is not enough space for creating even the basics of an insert query which is:");
+					.println("\nThere is not enough space for creating even the basics of an insert query which is:");
 			System.out.println(incrementalStringBuilder);
-			return insertQueriesList;
+
+			System.out.println("because its length is: "
+					+ (incrementalStringBuilder.length()));
+
+			// insertQueriesAttributeArrayList = insertQueriesList;
+			return null;
 		}
 
 		for (; count < d.allRowsLists.size(); count++) {
@@ -193,7 +217,7 @@ public class DB2 {
 			// System.out.println("count = " + count +" and tempBuilder is:");
 			// System.out.println(tempBuilder);
 
-			if (incrementalStringBuilder.length() + tempBuilder.length() < maxBatchInsert + 1) {
+			if (incrementalStringBuilder.length() + tempBuilder.length() - 2 <= maxBatchInsert) {
 				incrementalStringBuilder.append(tempBuilder);
 
 				// System.out.println("count = " + count
@@ -204,20 +228,8 @@ public class DB2 {
 				if (count > 0) {
 					incrementalStringBuilder.setLength(incrementalStringBuilder
 							.length() - 2);
-				}
-				// incrementalStringBuilder.setCharAt((incrementalStringBuilder.length()
-				// - 1), ')');
-				insertQueriesList.add(incrementalStringBuilder.toString());
-				System.out.println(insertQueriesList.toString());
-				incrementalStringBuilder.setLength(patternStringBuilder
-						.length());
-				if (incrementalStringBuilder.length() + tempBuilder.length() < maxBatchInsert) {
-					incrementalStringBuilder.append(tempBuilder);
-//					System.out.println(incrementalStringBuilder);
-
 				} else {
-					System.out
-							.println("this query is too long to be executed:");
+					System.out.println("\nThere is not enough space for executing even the first insert query which is:");
 					tempBuilder.setLength(tempBuilder.length() - 2);
 					System.out.println(incrementalStringBuilder.toString()
 							+ tempBuilder);
@@ -225,19 +237,48 @@ public class DB2 {
 					System.out.println("because its length is: "
 							+ (incrementalStringBuilder.length() + tempBuilder
 									.length()));
+					System.out.println();
+					insertQueriesAttributeArrayList = insertQueriesList;
+					return insertQueriesList;
+				}
+				// incrementalStringBuilder.setCharAt((incrementalStringBuilder.length()
+				// - 1), ')');
+
+				insertQueriesList.add(incrementalStringBuilder.toString());
+				System.out.println(insertQueriesList.toString());
+				incrementalStringBuilder.setLength(patternStringBuilder
+						.length());
+				if (incrementalStringBuilder.length() + tempBuilder.length()
+						- 2 <= maxBatchInsert) {
+					incrementalStringBuilder.append(tempBuilder);
+					// System.out.println(incrementalStringBuilder);
+
+				} else {
+					System.out
+							.println("\nthis query is too long to be executed:");
+					tempBuilder.setLength(tempBuilder.length() - 2);
+					System.out.println(incrementalStringBuilder.toString()
+							+ tempBuilder);
+
+					System.out.println("because its length is: "
+							+ (incrementalStringBuilder.length() + tempBuilder
+									.length()));
+					insertQueriesAttributeArrayList = insertQueriesList;
 					return insertQueriesList;
 				}
 
 			}
 
 		}
-		incrementalStringBuilder.setLength(incrementalStringBuilder.length() - 2);
-		
+		incrementalStringBuilder
+				.setLength(incrementalStringBuilder.length() - 2);
+
 		insertQueriesList.add(incrementalStringBuilder.toString());
 		System.out.println(incrementalStringBuilder);
 		// incrementalStringBuilder.setCharAt(incrementalStringBuilder.length()
 		// - 1, ')');
 
+		insertQueriesAttributeArrayList = insertQueriesList;
 		return insertQueriesList;
 
 	}
@@ -285,6 +326,7 @@ public class DB2 {
 			++count;
 		}
 
+		insertQueriesAttributeArrayList = insertQueriesList;
 		return insertQueriesList;
 
 	}

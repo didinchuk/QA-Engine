@@ -108,7 +108,7 @@ public class InputInterface {
 		fr.setRowLimit(100);
 		fr.setIgnoreLines(0);
 		fr.setHasHeader(this.hasHeader);
-		columnCount = fr.getNumberOfColumns(filePath);
+		columnCount = fr.getNumberOfColumnFromHeader(filePath);
 		
 		data = fr.make2DData5(filePath);
 		
