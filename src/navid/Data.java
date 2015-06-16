@@ -22,7 +22,7 @@ public class Data {
 //		typeOfColumns = new HashMap<String, String>();
 		header = new Header();
 		
-//		allRowsLists = new ArrayList<ArrayList<String>>();
+		allRowsLists = new ArrayList<ArrayList<String>>();
 		
 	}
 	

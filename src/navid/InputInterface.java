@@ -95,6 +95,10 @@ public class InputInterface {
 		
 	}
 
+	public void setColumnHeaderListByUser(int numberOfColumns, Data d) {
+		
+		
+	}
 	public void run() {
 
 		getFilePath();
@@ -105,26 +109,28 @@ public class InputInterface {
 		fr.setIgnoreLines(0);
 		fr.setHasHeader(this.hasHeader);
 		columnCount = fr.getNumberOfColumns(filePath);
-
-		if (this.hasHeader) {
-			fr.setHeaderColumnsByFR(columnCount);
+		
+		data = fr.make2DData5(filePath);
+		
+		if (!hasHeader) {
+			setHeaderColumnsByUser(columnCount);
 		}
-		else{
-			setHeaderColumnsByUser(data.header.columns.size());
-			data.setColumnHeaderListByUser(columnCount);
-		}
-		
-
-		data = fr.make2DData5(this.filePath);
-		System.out.println();
-		System.out.println("Here are all the rows:");
-		data.showAllRows();
-		getDataTypes(data.header.columns);
-//		data.showTypes();
-		DB2 db2 = new DB2();
-//		db2.createTableString(data);
-		
-		
+//		else{
+//			setHeaderColumnsByUser(data.header.columns.size());
+//			data.setColumnHeaderListByUser(columnCount);
+//		}
+//		
+//
+////		data = fr.make2DData5(this.filePath);
+//		System.out.println();
+//		System.out.println("Here are all the rows:");
+//		data.showAllRows();
+//		getDataTypes(data.header.columns);
+////		data.showTypes();
+//		DB2 db2 = new DB2();
+////		db2.createTableString(data);
+//		
+//		
 		
 		
 	}

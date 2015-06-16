@@ -1,13 +1,14 @@
-package navid;
+package navid4;
 
 import java.io.BufferedReader;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import navid3.Data;
 
 public class Table {
 
@@ -50,6 +51,77 @@ public class Table {
 		}
 		return insertQueryStrings;
 	}
+	
+	public void makeInsertQueryUsingDataObject(Data data) {
+		// IT IS RECOMMENDED TO BUILD THE CREATE QUERY IN THIS METHOD.
+
+		// String pathString =
+		// transformSlashtoBackslash("C:\\Users\\Navid.Vafaei\\dev\\db\\adncustomer_2014-06-18.csv");
+		// String pathString =
+		// "C:\\Users\\Navid.Vafaei\\dev\\db\\adncustomer_2014-06-18.csv";
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		if (tableNameString == null) {
+
+		}
+		List<String> sqlQueryInsertList = new ArrayList<String>();
+		StringBuilder sqlQueryInsertStringBuilder = new StringBuilder();
+
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = ",";
+		String[] columnNames = null;
+
+		try {
+
+			br = new BufferedReader(new FileReader(pathString));
+			int counter = 0;
+			while ((line = br.readLine()) != null) {
+				if (counter == 0) {
+
+					// sqlQueryInsertStringBuilder.append("INSERT INTO ");
+					columnNames = line.split(cvsSplitBy);
+					System.out.println("Customer [id = " + columnNames[0]
+							+ " , First Name = " + columnNames[1] + "]");
+					sqlQueryInsertList.add(sqlQueryInsertStringBuilder
+							.toString());
+					String CustomerID = columnNames[0];
+					System.out.println("first line");
+
+				} else {
+
+					sqlQueryInsertStringBuilder.setLength(0);
+					sqlQueryInsertStringBuilder.append("INSERT INTO ");
+					sqlQueryInsertStringBuilder.append(columnNames[1]);
+					String[] customerStrings = line.split(cvsSplitBy);
+					System.out.println("Customer [id = " + customerStrings[0]
+							+ " , First Name = " + customerStrings[1] + "]");
+					sqlQueryInsertList.add(sqlQueryInsertStringBuilder
+							.toString());
+				}
+				++counter;
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		System.out.println("Done");
+		System.out.println("This is the Insert SQL query:");
+		System.out.println(sqlQueryInsertList);
+	}
+
 
 	public void makeInsertQueryStrings(String pathString) {
 		// IT IS RECOMMENDED TO BUILD THE CREATE QUERY IN THIS METHOD.

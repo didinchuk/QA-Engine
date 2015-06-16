@@ -31,7 +31,8 @@ public class helloWorld {
 		    System.out.println("avaje-ebeanorm-agent not found in classpath - not dynamically loaded");
 		  }
 		
-        /*EBasicVer e = Ebean.find(EBasicVer.class).where().eq("DEPT_ID", 100).findUnique();
+		/*
+        EBasicVer e = Ebean.find(EBasicVer.class).where().eq("DEPT_ID", 100).findUnique();
         System.out.println(e.DEPT_ID);
         System.out.println(e.DNAME);
         System.out.println(e.MISSION);
@@ -39,7 +40,8 @@ public class helloWorld {
         e.setId("11");
         System.out.println(e.DEPT_ID);
         Ebean.save(e);
-        System.out.println("SAVED"); */
+        System.out.println("SAVED"); 
+		*/
 		
 		/* DatasourceType dst = new DatasourceType();
 		//dst.id = (long) 12;
@@ -49,7 +51,7 @@ public class helloWorld {
 		dst.jdbcJar = "temp";
 		dst.save(); */
 		
-		//Datasource ds = new Datasource();
+		Datasource ds = new Datasource();
 		
 		TempTables tt  = new TempTables();
 //		ReadCVS rCvs = new ReadCVS();
@@ -57,21 +59,21 @@ public class helloWorld {
 		
 		
 		
-		/*ds.connectionName = "My First Connection Navid";
+		ds.connectionName = "My First Connection Navid";
 		ds.username = "db2inst1";
 		ds.password = "c5l@b123";
 		ds.serverName = "cloud.clientspectrum.com";
 		ds.databaseName = "CLOUD_DB";
 		ds.serverPort = 5000;
 		ds.datasourceType = Ebean.find(DatasourceType.class).where().eq("IDATASOURCETYPE", 1).findUnique();
-		*/
-		tt.createStatement = t.getCreateTableQueryString();
+		
+		tt.createStatement = "CREATE TABLE CAMPAIGNQA.NAVID30 (ID INT, NAME VARCHAR(255), BIRTHDATE date ) ";
 		tt.tempTableName = "Navid's Table";
 		tt.id = (long) 1;
-//		tt.save();
+		tt.save();
 		
 		
-        //ds.save();
+        ds.save();
                   
         
         

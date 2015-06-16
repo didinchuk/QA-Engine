@@ -318,7 +318,7 @@ public class FileReaderClass {
 									+ (i + 1) + " whose name is \""
 									+ columns[i] + "\"");
 					System.out
-							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(4098):");
+							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(255):");
 
 					String temp = in.next().toLowerCase();
 					tempInputString = temp.charAt(0);
@@ -335,7 +335,7 @@ public class FileReaderClass {
 
 					case 'v':
 
-						data.typeOfColumns.put(columns[i], "varchar(4098)");
+						data.typeOfColumns.put(columns[i], "varchar(255)");
 						break;
 
 					default:
@@ -370,6 +370,8 @@ public class FileReaderClass {
 
 
 	public Data make2DData5(String filePath) {
+		
+		Data d = new Data();
 
 //		data.setColumnCount(getNumberOfColumns(filePath));
 
@@ -400,7 +402,7 @@ public class FileReaderClass {
 									+ (i + 1) + " whose name is \""
 									+ columns[i] + "\"");
 					System.out
-							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(4098):");
+							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(255):");
 
 					String temp = in.next().toLowerCase();
 					tempInputString = temp;
@@ -415,7 +417,7 @@ public class FileReaderClass {
 						break;
 
 					case "v":
-						data.header.columns.get(i).dataType = "varchar(4098)";
+						data.header.columns.get(i).dataType = "varchar(255)";
 						break;
 
 
@@ -429,6 +431,8 @@ public class FileReaderClass {
 				tempInputString = " ";
 
 			}
+			
+			in.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -443,12 +447,87 @@ public class FileReaderClass {
 				}
 			}
 		}
+		
+		data = d;
 
 		return data;
 	}
 
-	public void setHeaderColumnsByFR(int columnCount) {
+
+//	public Data make2DData3(String filePath) {
+//		data = new Data();
+//		data.setColumnCount(getNumberOfColumns(filePath));
+//
+//		String line = "";
+//
+//		BufferedReader br = null;
+//
+//		try {
+//			br = new BufferedReader(new FileReader(filePath));
+//
+//			String[] columns;
+//			int countLineNumber = 0;
+//
+//			if (hasHeader) {
+//
+//				line = br.readLine();
+//
+//				columns = line.split(delimiterString);
+//				System.out.println("Numbe of columns is " + columns.length
+//						+ ".");
+//				data.setColumnCount(columns.length);
+//				for (int i = 0; i < columns.length; i++) {
+//					System.out.println("column#" + i + " is " + columns[i]);
+//					data.columnHeaderList.add(columns[i]);
+//
+//				}
+//			}
+//			while ((line = br.readLine()) != null) {
+//				ArrayList<String> eachRowArrayList = new ArrayList<String>();
+//				columns = line.split(delimiterString);
+//				for (String s : columns) {
+//					eachRowArrayList.add(s);
+//
+//				}
+//
+//				for (int i = 0; i < columns.length; i++) {
+//					System.out.println("columns#" + i + " is " + columns[i]);
+//				}
+//
+//				System.out.println("row#" + countLineNumber + " name is: "
+//						+ columns[1]);
+//				data.allRowsLists.add(eachRowArrayList);
+//				++countLineNumber;
+//
+//			}
+//
+//			// System.out.println("3: number of rows is: "+ columns.length);
+//
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (br != null) {
+//				try {
+//					br.close();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//
+//		return data;
+//	}
+
+	
+	public Data setHeaderColumnsByFR(int columnCount) {
 		// TODO Auto-generated method stub
+		Data d = new Data();
+		
+		
+		data = d;
+		return d;
 		
 		
 	}

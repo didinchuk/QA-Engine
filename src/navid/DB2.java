@@ -58,7 +58,7 @@ public class DB2 {
 									+ (i + 1) + " whose name is \""
 									+ columns[i] + "\"");
 					System.out
-							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(4098):");
+							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(255):");
 
 					String temp = in.next().toLowerCase();
 					tempInputString = temp.charAt(0);
@@ -73,7 +73,7 @@ public class DB2 {
 						break;
 
 					case 'v':
-						createTableQueryStringBuilder.append("varchar(4098), ");
+						createTableQueryStringBuilder.append("varchar(255), ");
 						break;
 
 					default:

@@ -61,7 +61,7 @@ public class ReadCVS {
 									+ (i + 1) + " whose name is \""
 									+ columns[i] + "\"");
 					System.out
-							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(4098):");
+							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(255):");
 
 					String temp = in.next();
 					tempInputString = temp.charAt(0);
@@ -76,7 +76,7 @@ public class ReadCVS {
 						break;
 
 					case 'v':
-						createTableQueryString += "varchar(4098), ";
+						createTableQueryString += "varchar(255), ";
 						break;
 
 					default:
@@ -152,7 +152,7 @@ public class ReadCVS {
 									+ (i + 1) + " whose name is \""
 									+ columns[i] + "\"");
 					System.out
-							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(4098):");
+							.println("Please enter \'i\' for integer, \'d\' for Date and \'v\' for Varchar(255):");
 
 					String temp = in.next();
 					tempInputString = temp.charAt(0);
@@ -167,7 +167,7 @@ public class ReadCVS {
 						break;
 
 					case 'v':
-						createTableQueryString.append("varchar(4098), ");
+						createTableQueryString.append("varchar(255), ");
 						break;
 
 					default:

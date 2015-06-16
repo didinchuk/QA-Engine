@@ -38,7 +38,7 @@ public class FirstExample {
   //  sql = rCvs.createTableReturnString("C:/TempData/t.csv");
     //int i = stmt.executeUpdate(sql);
     
-//	 stmt.executeUpdate("CREATE TABLE CAMPAIGNQA.NAVID5 (CustomerID int, FirstName varchar(4098), LastName varchar(4098), Email varchar(4098), DateOfBirth date)");
+//	 stmt.executeUpdate("CREATE TABLE CAMPAIGNQA.NAVID5 (CustomerID int, FirstName varchar(255), LastName varchar(255), Email varchar(255), DateOfBirth date)");
 //	 stmt.executeUpdate(createQueryString);
 	    
     stmt.executeUpdate("insert into CAMPAIGNQA.NAVID34 values (2, 'fd', 'sfd', 'sfd', '1988-03-03')");
